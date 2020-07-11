@@ -4888,6 +4888,22 @@ void flexframesync_debug_disable(flexframesync _q);
 void flexframesync_debug_print(flexframesync _q,
                                const char *  _filename);
 
+typedef struct {
+    const liquid_float_complex *buf;
+    unsigned int buf_len;
+    const liquid_float_complex *preamble_pn;
+    unsigned int preamble_pn_len;
+    const liquid_float_complex *preamble_rx;
+    unsigned int preamble_rx_len;
+    const liquid_float_complex *header_mod;
+    unsigned int header_mod_len;
+    const liquid_float_complex *payload_sym;
+    unsigned int payload_sym_len;
+} flexframesyncdebug_s;
+
+void flexframesync_debug_struct(flexframesync _q,
+                               flexframesyncdebug_s *_s);
+
 //
 // bpacket : binary packet suitable for data streaming
 //

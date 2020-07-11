@@ -945,3 +945,28 @@ void flexframesync_debug_print(flexframesync _q,
 #endif
 }
 
+// print debugging information
+void flexframesync_debug_struct(flexframesync _q,
+                               flexframesyncdebug_s *_s)
+{
+#if DEBUG_FLEXFRAMESYNC
+    if (!_q->debug_objects_created) {
+        fprintf(stderr,"error: flexframesync_debug_print(), debugging objects don't exist; enable debugging first\n");
+        return;
+    }
+    float complex * rc;
+    windowcf_read(_q->debug_x, &rc);
+    _s->buf = rc;
+    _s->buf_len = DEBUG_BUFFER_LEN;
+    _s->preamble_pn = _q->preamble_pn;
+    _s->preamble_pn_len = 64;
+    _s->preamble_rx = _q->preamble_rx;
+    _s->preamble_rx_len = 64;
+    _s->header_mod = _q->header_mod;
+    _s->header_mod_len = _q->header_mod_len;
+    _s->payload_sym = _q->payload_sym;
+    _s->payload_sym_len = _q->payload_sym_len;
+#else
+    fprintf(stderr,"flexframesync_debug_print(): compile-time debugging disabled\n");
+#endif
+}
