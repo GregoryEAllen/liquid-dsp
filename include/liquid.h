@@ -4888,6 +4888,11 @@ void flexframesync_debug_disable(flexframesync _q);
 void flexframesync_debug_print(flexframesync _q,
                                const char *  _filename);
 
+#ifdef LIQUID_HAVE_FLEXFRAMESYNCDEBUG_S
+#  undef LIQUID_HAVE_FLEXFRAMESYNCDEBUG_S
+#endif
+#define LIQUID_HAVE_FLEXFRAMESYNCDEBUG_S 1
+
 typedef struct {
     const liquid_float_complex *buf;
     unsigned int buf_len;
